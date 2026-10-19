@@ -1,69 +1,224 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Reset basico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  margin: 0;
+  background-color: #e9ecef;
+  color: #212529;
+}
+
+/* Header con azul marino oficial CRSC */
+header {
+  background-color: #1b4985;
+  padding: 0.8rem 2rem;
+  position: relative;
+}
+
+nav {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Insignia CRSC estilo UC */
+.logo-crsc {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.shield-icon {
+  background: #ffffff;
+  color: #1b4985;
+  padding: 0.3rem 0.6rem;
+  border-radius: 2px;
+  font-weight: 900;
+  border: 2px solid #d9251d;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 1.2rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+nav a:hover {
+  color: #cbdcf7;
+}
+
+/* Contenedores */
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Banner Principal Home */
+.hero-banner {
+  background: linear-gradient(rgba(27, 73, 133, 0.85), rgba(27, 73, 133, 0.85)), 
+              url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200') center/cover;
+  color: #ffffff;
+  padding: 4rem 2rem;
+  border-bottom: 4px solid #d9251d;
+  margin-bottom: 2rem;
+}
+
+.hero-banner h1 {
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.hero-banner p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+}
+
+/* Cajas blancas de la interfaz */
+.card-box {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 4px;
+  border-left: 4px solid #1b4985;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.card-box h3 {
+  color: #1b4985;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+/* Grilla de vehiculos */
+.grid-vehiculos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.vehiculo-card {
+  background: #ffffff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.vehiculo-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.vehiculo-info {
+  padding: 1rem;
+}
+
+.vehiculo-info h4 {
+  color: #212529;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.vehiculo-precio {
+  font-weight: bold;
+  color: #1b4985;
+  margin-bottom: 0.8rem;
+}
+
+/* Botones */
+.btn-rojo {
+  background-color: #d9251d;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 3px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0.85rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.btn-azul {
+  background-color: #1b4985;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.btn-outline {
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* Formularios */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  color: #212529;
+}
+
+.form-group input, 
+.form-group textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-group input.error,
+.form-group textarea.error {
+  border-color: #d9251d;
+  background-color: #fdf2f2;
+}
+
+.msg-error {
+  color: #d9251d;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+/* Footer */
+footer {
+  background-color: #333333;
+  color: #ffffff;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  font-size: 0.85rem;
 }
