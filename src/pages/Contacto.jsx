@@ -2,46 +2,23 @@ import React, { useState } from 'react';
 
 export default function Contacto() {
   const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
+  const [correo, setCorreo] = useState('');
   const [mensaje, setMensaje] = useState('');
-
-  const [errorNombre, setErrorNombre] = useState('');
-  const [errorEmail, setErrorEmail] = useState('');
-  const [errorMensaje, setErrorMensaje] = useState('');
-  const [enviado, setEnviado] = useState(false);
+  const [errores, setErrores] = useState({});
+  const [exito, setExito] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let valido = true;
+    let err = {};
+    if (!nombre.trim()) err.nombre = 'El nombre es obligatorio';
+    if (!correo.trim() || !correo.includes('@')) err.correo = 'Ingrese un correo electrónico válido';
+    if (!mensaje.trim()) err.mensaje = 'El mensaje no puede estar vacío';
 
-    if (nombre.trim() === '') {
-      setErrorNombre('El nombre es obligatorio');
-      valido = false;
-    } else {
-      setErrorNombre('');
-    }
-
-    if (email.trim() === '') {
-      setErrorEmail('El correo es obligatorio');
-      valido = false;
-    } else if (!email.includes('@')) {
-      setErrorEmail('Ingrese un correo valido');
-      valido = false;
-    } else {
-      setErrorEmail('');
-    }
-
-    if (mensaje.trim() === '') {
-      setErrorMensaje('El mensaje es obligatorio');
-      valido = false;
-    } else {
-      setErrorMensaje('');
-    }
-
-    if (valido) {
-      setEnviado(true);
+    setErrores(err);
+    if (Object.keys(err).length === 0) {
+      setExito(true);
       setNombre('');
-      setEmail('');
+      setCorreo('');
       setMensaje('');
     }
   };
@@ -49,55 +26,55 @@ export default function Contacto() {
   return (
     <main className="container">
       <div className="card-box" style={{ maxWidth: '600px', margin: '0 auto' }}>
-        <h2 style={{ color: '#1b4985', marginBottom: '1.5rem' }}>Contactanos</h2>
-
-        {enviado ? (
-          <p style={{ color: '#1b4985', fontWeight: 'bold' }}>
-            ¡Mensaje enviado con exito! Nos comunicaremos contigo a la brevedad.
-          </p>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Nombre Completo:</label>
-              <input 
-                type="text" 
-                placeholder="Tu nombre"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-                className={errorNombre ? 'error' : ''}
-              />
-              {errorNombre && <span className="msg-error">{errorNombre}</span>}
-            </div>
-
-            <div className="form-group">
-              <label>Correo Electronico:</label>
-              <input 
-                type="email" 
-                placeholder="correo@ejemplo.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={errorEmail ? 'error' : ''}
-              />
-              {errorEmail && <span className="msg-error">{errorEmail}</span>}
-            </div>
-
-            <div className="form-group">
-              <label>Mensaje:</label>
-              <textarea 
-                rows="4" 
-                placeholder="Escribe tu consulta..."
-                value={mensaje}
-                onChange={(e) => setMensaje(e.target.value)}
-                className={errorMensaje ? 'error' : ''}
-              ></textarea>
-              {errorMensaje && <span className="msg-error">{errorMensaje}</span>}
-            </div>
-
-            <button type="submit" className="btn-azul">
-              ENVIAR MENSAJE
-            </button>
-          </form>
+        <h2>Contáctanos</h2>
+        
+        {exito && (
+          <div style={{ background: '#d4edda', color: '#155724', padding: '1rem', borderRadius: '4px', marginBottom: '1.2rem', fontWeight: 'bold' }}>
+            ✓ ¡Mensaje enviado con éxito! Nos pondremos en contacto a la brevedad.
+          </div>
         )}
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Nombre Completo:</label>
+            <input 
+              type="text" 
+              className={errores.nombre ? 'error' : ''}
+              placeholder="Tu nombre completo"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+            />
+            {errores.nombre && <p className="msg-error">{errores.nombre}</p>}
+          </div>
+
+          <div className="form-group">
+            <label>Correo Electrónico:</label>
+            <input 
+              type="email" 
+              className={errores.correo ? 'error' : ''}
+              placeholder="correo@ejemplo.com"
+              value={correo}
+              onChange={(e) => setCorreo(e.target.value)}
+            />
+            {errores.correo && <p className="msg-error">{errores.correo}</p>}
+          </div>
+
+          <div className="form-group">
+            <label>Mensaje:</label>
+            <textarea 
+              rows="4"
+              className={errores.mensaje ? 'error' : ''}
+              placeholder="Escribe tu consulta o requerimiento..."
+              value={mensaje}
+              onChange={(e) => setMensaje(e.target.value)}
+            ></textarea>
+            {errores.mensaje && <p className="msg-error">{errores.mensaje}</p>}
+          </div>
+
+          <button type="submit" className="btn-rojo" style={{ width: '100%' }}>
+            ENVIAR MENSAJE
+          </button>
+        </form>
       </div>
     </main>
   );
